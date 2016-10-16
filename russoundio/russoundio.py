@@ -51,9 +51,9 @@ class RussoundIO:
     def set_power(self, controller, zone, power):
         """ Switch power on/off to a zone """
 
-        if power == 0:
+        if power == '0':
             cmd = 'ZoneOff'
-        elif power == 1:
+        elif power == '1':
             cmd = 'ZoneOn'
 
         self.send_cmd(controller, zone, cmd)
@@ -73,11 +73,11 @@ class RussoundIO:
     def get_power(self, controller, zone):
         """ Get source power status """
 
-    def send_cmd(self, controller, zone, cmd, data=None):
+    def send_cmd(self, controller, zone, cmd, data=''):
         """ Send data to connected gateway """
 
         event = "C[%s].Z[%s]!KeyPress %s %s" % (controller, zone, cmd, data)
-        self.sock.send(event)
+        self.sock.send(event.encode())
 
     def receive_data(self, timeout=2):
         """ Receive data from connected gateway """
