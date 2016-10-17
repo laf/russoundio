@@ -76,7 +76,7 @@ class RussoundIO:
     def send_cmd(self, controller, zone, cmd, data=''):
         """ Send data to connected gateway """
 
-        event = "C[%s].Z[%s]!KeyPress %s %s" % (controller, zone, cmd, data)
+        event = "C[%s].Z[%s]!%s %s" % (controller, zone, cmd, data)
         self.sock.send(event.encode())
 
     def receive_data(self, timeout=2):
